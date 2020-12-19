@@ -20,8 +20,8 @@ class RetailerWithProductSeeder extends Seeder
 
         $bestBuy->addStock($switch, new Stock([
             'price' => 10000,
-            'url' => 'http://foo.com',
-            'sku' => '12345',
+            'url' => 'https://api.mercadolibre.com/sites/MCO/search?q=Diadema Bluetooth Diseño Gatito Calidad Garantizada',
+            'sku' => 'Diadema Bluetooth Diseño Gatito Calidad Garantizada',
             'in_stock' => false
         ]));
     }

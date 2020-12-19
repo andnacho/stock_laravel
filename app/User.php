@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Casts\EmailCast;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,6 +26,16 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUsername($value)
  * @mixin \Eloquent
+ * @property string $name
+ * @property array $email
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $remember_token
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  */
 class User extends Authenticatable
 {
@@ -54,6 +65,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'email' => EmailCast::class,
         'email_verified_at' => 'datetime',
     ];
 }

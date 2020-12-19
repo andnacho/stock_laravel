@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel dsadf
                 </div>
 
                 <div class="links">
@@ -94,7 +94,13 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                @php
+                    $hola = 'nuevo mensaje';
+                @endphp
+
+                <x-alert :message="$hola"></x-alert>
             </div>
         </div>
     </body>
 </html>
+$HOME

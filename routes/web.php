@@ -16,3 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user/{user:email}', function(\App\User $user) {
+   return $user;
+});
+
+Route::get('/test', function() {
+
+	return "saludos";
+});
+
+Route::get('/test2', function() {
+
+
+	return \App\User::all();
+});
+
+Route::get('/item/{product}', fn($product) => Http::get("https://api.mercadolibre.com/sites/MCO/search?q={$product}")->json());

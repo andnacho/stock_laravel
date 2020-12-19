@@ -13,23 +13,28 @@ class TrackCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-   /** @test */
-   public function it_tracks_product_stock()
-   {
-       $this->seed(\RetailerWithProductSeeder::class);
+    /** @test */
+    public function it_tracks_product_stock()
+    {
+        $this->seed(\RetailerWithProductSeeder::class);
 
-       $this->assertFalse(Product::first()->inStock());
+        $this->assertFalse(Product::first()->inStock());
 
-       \Http::fake(function() {
-           return [
-               'available' => true,
-               'price' => 29900
-           ];
-       });
+        \Http::fake(function () {
+            return [
+                'results' => [
+                    0 => [
+                        'available_quantity' => 1,
+                        'price' => 29900,
+                        'permalink' => 'https://api.mercadolibre.com/sites/MCO/search?q=Diadema Bluetooth Diseño Gatito Calidad Garantizada'
+                    ]
+                ]
+            ];
+        });
 
-       $this->artisan('track')
+        $this->artisan('track')
             ->expectsOutput('All Done!');
 
-       $this->assertTrue(Product::first()->inStock());
-   }
+        $this->assertTrue(Product::first()->inStock());
+    }
 }
